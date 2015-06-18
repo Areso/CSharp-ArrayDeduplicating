@@ -24,22 +24,22 @@ namespace array_deduplicating
         private void button1_Click(object sender, EventArgs e)
         {
             //variables
-            int i, ii; //counters for cycles
-            int input_array_qty; //length of input_array
-            string input; //input string
-            //string[] input_array = new string[20];
-            string backspace;
-            textBox2.Text = "";
-
+            int i, ii; //счетчики циклов
+            int input_array_qty; //длина массива слов
+            string input; //входящая строка
+            //string[] input_array = new string[20]; //использовано в другой реализации заполнения массива слов
+            //string backspace; //использовано в другой реализации заполнения массива слов
+            textBox2.Text = ""; //очищаем поле вывода
+        
             //init variables
             input = textBox1.Text;//"В недрах тундры выдры в гетрах тырят в вёдра ядра кедра";
             input = input.ToLower();
-            //       0   1       2      3  4   5      6   7  8     9    10
-            backspace = " ";
+            //                       0   1       2      3  4   5      6   7  8     9    10
+            //backspace = " ";//использовано в другой реализации заполнения массива слов
             i = 0;
             ii = 0;
 
-            //string to array of words
+            //string to array of words-читает массив задом наперед)
             /*
             {
                 while (input != "")
@@ -55,45 +55,60 @@ namespace array_deduplicating
                     i = i + 1;
                 }
             }
-            */
-            string [] input_array = input.Split(new Char[] {' '}); // this will works only in C#
-
-            //looking for equals
-            input_array_qty = 10;
-            MessageBox.Show(input_array[0]);
-            MessageBox.Show(i.ToString());
-
-            i = 0;
-            int[,] match = new int[20, 20];
-            /*
-            while (ii <= input_array_qty)
-            {
-                if (input_array[0] == input_array[ii])
-                {
-                    MessageBox.Show(input_array[0] + " ; input array ii is " + ii + " : " + input_array[ii]);
-                }
-                ii = ii + 1;
-            }
-            */
+            */ 
             
-            while (i <= input_array_qty)
+            string [] input_array = input.Split(new Char[] {' '}); // инициируем и заполняем массив слов из входящей строки
+
+            input_array_qty = input_array.Length-1; //узнаем длину массива
+                      
+                  
+            //ищем совпадения
+            while (i <= input_array_qty)//каждое словое в строке
             {
-                while (ii <= input_array_qty)
+                while (ii <= input_array_qty)//сравниваем с с каждым
                 {
-                    if (input_array[i] == input_array[ii])// && i!=ii)
+                    
+                    if (input_array[i] == input_array[ii] && i!=ii) //если сравнимое слово равно тому, с которым сравниваем и это не слово в строке не имеет одну и ту же позицию, то
                     {
-                        match[i, ii] = 1;
-                        MessageBox.Show("input array i is " + i + " : " + input_array[i] + " ; input array ii is " + ii + " : " + input_array[i]);
+                        input_array[ii]="";//удаляем повторное значение из массива
                     }
-                    int local;
-                    local = match[i, ii];
-                    textBox2.Text = textBox2.Text + " "+ local.ToString();
-                    //MessageBox.Show("ii is "+ii.ToString());
                     ii = ii + 1;
                 }
-                textBox2.Text = textBox2.Text + Environment.NewLine; //Char(13) + Char(10);
-                ii = 0;
-                //MessageBox.Show("i is " + i.ToString());
+                ii = 0; //обнуляем счетчик вложенного цикла
+                i = i + 1;
+            }
+
+           
+            
+            //удаляем пустые элементы путем замены на следующие не пустые
+            i = 0;
+            ii = 0;
+            int tmp = 0;
+            while (i <= input_array_qty)
+            {
+                if (input_array[i]=="")
+                {
+                    tmp = i;
+                    while (i < input_array_qty)
+                    {
+                        input_array[i] = input_array[i + 1];
+                        i = i + 1;
+                    }
+                    if (i == input_array_qty)
+                    {
+                        input_array[input_array_qty] = "";
+                    }
+                    i = tmp;
+                }
+                
+                i = i + 1;
+            }
+
+            //выводим на экран результат
+            i = 0;
+            while (i <= input_array_qty)
+            {
+                textBox2.Text = textBox2.Text + input_array[i] + Environment.NewLine;
                 i = i + 1;
             }
             

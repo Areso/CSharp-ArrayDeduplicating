@@ -1,6 +1,5 @@
 C:\github projects\array deduplicating\array_deduplicating\array_deduplicating\bin\Debug\array_deduplicating.exe
 C:\github projects\array deduplicating\array_deduplicating\array_deduplicating\bin\Debug\array_deduplicating.pdb
-C:\github projects\array deduplicating\array_deduplicating\array_deduplicating\obj\x86\Debug\array_deduplicating.csprojResolveAssemblyReference.cache
 C:\github projects\array deduplicating\array_deduplicating\array_deduplicating\obj\x86\Debug\array_deduplicating.Form1.resources
 C:\github projects\array deduplicating\array_deduplicating\array_deduplicating\obj\x86\Debug\array_deduplicating.Properties.Resources.resources
 C:\github projects\array deduplicating\array_deduplicating\array_deduplicating\obj\x86\Debug\array_deduplicating.csproj.GenerateResource.Cache
